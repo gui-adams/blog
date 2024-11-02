@@ -5,4 +5,7 @@ interface Window {
       createForm: (id: string, accountId: string) => void;
     };
   }
+
+  declare var RDStationForms: any;
+
   

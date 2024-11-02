@@ -1,0 +1,82 @@
+// styles.module.scss
+
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.contatoContainer {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-large 0;
+  margin-bottom: $spacing-large;
+
+  h2 {
+    font-size: 2.4rem;
+    line-height: 3rem;
+    color: $primary-text-color;
+    text-align: center;
+    font-family: $font-family;
+    margin-bottom: $spacing-small;
+    font-weight: bold; // Destaca o título
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: $secondary-text-color;
+    text-align: center; // Centraliza o texto
+    font-family: $font-family;
+    max-width: 600px;
+    margin: 0.5rem 0;
+
+    span {
+      display: block;
+    }
+  }
+
+  .centralizado {
+    display: block;
+    text-align: center; // Centraliza o texto
+    font-weight: normal; // Garante que o texto não tenha ênfase exagerada
+  }
+
+  @include respond-to(sm) {
+    padding: $spacing-medium;
+
+    h2 {
+      font-size: 1.8rem;
+      line-height: 2.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+    }
+  }
+
+  @include respond-to(xs) {
+    h2 {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+      line-height: 1.3rem;
+    }
+  }
+
+  @include respond-to(xl) {
+    h2 {
+      font-size: 3rem;
+      line-height: 4rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+    }
+  }
+}

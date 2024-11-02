@@ -1,0 +1,87 @@
+// styles.module.scss
+
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.sobreContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: $spacing-large 0;
+
+  .texto {
+    flex: 1;
+    padding-right: $spacing-medium;
+    margin-left: $spacing-large;
+
+    h2 {
+      font-size: 2.4rem;
+      color: $primary-text-color;
+      font-family: $font-family;
+      margin-bottom: $spacing-small;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+      color: $secondary-text-color;
+      text-align: justify;
+      font-family: $font-family;
+      margin-bottom: $spacing-small;
+
+      span {
+        display: block;
+        text-align: center;
+        color: $primary-text-color;
+      }
+    }
+
+    @include respond-to(sm) {
+      padding-right: 0;
+      margin-left: 0;
+      text-align: center;
+      padding: 0 $spacing-small;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    @include respond-to(xl) {
+      h2 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+    }
+  }
+
+  .imagem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  }
+
+  @include respond-to(sm) {
+    flex-direction: column;
+    .imagem {
+      width: 100%;
+      margin-top: $spacing-medium;
+    }
+  }
+}

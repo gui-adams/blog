@@ -2,157 +2,156 @@
 @import '../../styles/mixins';
 
 .faqContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 4rem 0;
-}
-
-.faqHeader {
   text-align: center;
   margin-top: 2rem;
 
-  h2 {
-    font-size: 2.4rem;
-    color: $primary-text-color;
-    margin-bottom: 1rem;
-    font-family: $font-family;
-  }
+  .faqHeader {
+    h2 {
+      font-size: 2.4rem;
+      color: $primary-text-color;
+      font-family: $font-family;
+      margin-bottom: 1.5rem;
+    }
 
-  p {
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    color: $secondary-text-color;
-    font-family: $font-family;
+    p {
+      font-size: 1.2rem;
+      color: $secondary-text-color;
+      line-height: 1.5rem;
+      font-family: $font-family;
+
+      span {
+        display: block;
+      }
+    }
   }
 }
 
 .faqContent {
-  width: 100%;
-  max-width: 640px;
+  width: 640px;
   margin: 0 auto;
-  margin-top: 3rem;
+  margin-top: 5rem;
 
   details {
     border-radius: 10px;
-    margin-bottom: 30px;
-    transition: background-color 0.3s ease;
-    border-bottom: 1px solid $border-color;
+    margin-bottom: 20px;
+    padding: 10px;
     padding-bottom: 10px;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #d3d3d3;
 
     span {
       font-size: 1rem;
-      color: $foreground-color;
+      color: $primary-text-color;
       text-align: left;
       font-family: $font-family;
       padding-left: 10px;
       display: block;
-      margin-top: 20px;
+      margin-top: 10px;
     }
   }
 
   summary {
     cursor: pointer;
     outline: none;
-    position: relative;
-    display: block;
-    transition: color 0.3s ease;
+    color: $primary-text-color; // Usando a variável para cor
+    font-weight: bold;
     padding: 10px;
     margin: -10px;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; // Move a seta para o lado direito
+
+    &:hover {
+      color: $primary-color;
+    }
 
     &::after {
-      content: "\25B8"; // Ícone de seta
+      content: "›"; // Seta para indicar expansão
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-color: $primary-color;
+      color: #ffffff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
       font-size: 1rem;
-      color: $secondary-color;
       transition: transform 0.3s ease;
-      width: 20px;
-      height: 20px;
-      margin-left: 10px;
     }
   }
 
-  details[open] {
-    background-color: #F6F6F6;
-  }
-
   details[open] summary {
-    color: $primary-color;
-  }
+    color: $primary-color; // Alterando a cor do texto do resumo quando aberto
 
-  details[open] summary::after {
-    transform: rotate(90deg); // Rotaciona a seta ao abrir
+    &::after {
+      transform: rotate(90deg); // Rotaciona a seta ao abrir
+    }
   }
 
   /* Responsividade */
   @include respond-to(sm) {
-    max-width: 90%;
+    width: 90%;
     margin-top: 3rem;
 
     summary {
       padding: 8px;
-      font-size: 0.9rem;
       margin: -8px;
-    }
+      font-size: 0.9rem;
 
-    summary::after {
-      font-size: 0.8rem;
-      width: 16px;
-      height: 16px;
-      margin-left: 8px;
-    }
-
-    details {
-      margin-bottom: 20px;
-
-      span {
-        font-size: 0.9rem;
-        margin-top: 15px;
-        padding-left: 8px;
+      &::after {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 0.8rem;
       }
-    }
-  }
-
-  @include respond-to(xs) {
-    max-width: 95%;
-    margin-top: 2rem;
-
-    summary {
-      font-size: 0.8rem;
-      padding: 6px;
-      margin: -6px;
-    }
-
-    summary::after {
-      font-size: 0.7rem;
-      width: 14px;
-      height: 14px;
-      margin-left: 6px;
     }
 
     details {
       margin-bottom: 15px;
 
       span {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         margin-top: 10px;
-        padding-left: 6px;
       }
     }
   }
 
-  @include respond-to(lg) {
-    max-width: 800px;
-    margin-top: 5rem;
+  @include respond-to(xs) {
+    width: 95%;
+    margin-top: 2rem;
+
+    summary {
+      font-size: 0.8rem;
+      padding: 6px;
+
+      &::after {
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        font-size: 0.7rem;
+      }
+    }
 
     details {
-      margin-bottom: 40px;
-      padding-bottom: 15px;
+      margin-bottom: 10px;
+
+      span {
+        font-size: 0.8rem;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  @include respond-to(xl) {
+    width: 800px;
+    margin-top: 6rem;
+
+    details {
+      margin-bottom: 30px;
 
       span {
         font-size: 1.2rem;
-        margin-top: 25px;
-        padding-left: 15px;
+        margin-top: 20px;
       }
     }
 
@@ -161,10 +160,10 @@
       padding: 15px;
 
       &::after {
-        font-size: 1.2rem;
-        width: 24px;
-        height: 24px;
-        margin-left: 12px;
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        font-size: 1.1rem;
       }
     }
   }

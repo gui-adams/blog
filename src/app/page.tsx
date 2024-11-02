@@ -6,6 +6,8 @@ import { Video } from "@/components/Video";
 import { Newsletter } from "@/components/Newsletter";
 import { TicketItem } from "@/components/Planos";
 import { Faq } from "@/components/Faq";
+import { Sobre } from "@/components/Sobre";
+import { Contato } from "@/components/Contato";
 
 export default function Home() {
   return (
@@ -31,6 +33,12 @@ export default function Home() {
         </section>
         <section id="faq">
           <Faq />
+        </section>
+        <section id="sobre">
+          <Sobre />
+        </section>
+        <section id="contato">
+          <Contato />
         </section>
         </main>
     </div>
