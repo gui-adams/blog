@@ -1,0 +1,131 @@
+@import './variables';
+@import './mixins';
+
+// Ajuste do tamanho da fonte para diferentes larguras de tela
+html {
+  font-size: 100%; // Define a fonte base como 16px
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: 93.75%; // Reduz para aproximadamente 15px em telas grandes
+  }
+
+  @media (max-width: $breakpoint-xs) {
+    font-size: 81.25%; // Reduz para aproximadamente 13px em dispositivos pequenos
+  }
+}
+
+// Reset básico para garantir consistência de estilo entre diferentes navegadores
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box; // Define box-sizing como border-box para todos os elementos
+}
+
+// Estilo básico para html e body
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; // Evita o scroll horizontal
+  width: 100%;
+  min-height: 100%; // Usa min-height para garantir altura mínima da página
+}
+
+body {
+  background: $background-color; // Cor de fundo global
+  font-family: 'DM Sans', sans-serif; // Fonte padrão para o site
+  line-height: 1.6; // Altura de linha para facilitar leitura
+  color: $foreground-color; // Cor do texto padrão, definida nas variáveis
+}
+
+// Define estilos globais para inputs, selects, textarea e botões
+body, input, textarea, select, button {
+  font: 400 1rem 'Poppins', sans-serif; // Fonte e peso padrão para esses elementos
+  line-height: 1.5;
+  color: inherit; // Herda a cor de texto definida no body
+}
+
+// Estilo para links
+a {
+  color: inherit; // Herda a cor padrão do texto
+  text-decoration: none; // Remove sublinhado
+  transition: color 0.3s ease; // Transição suave na mudança de cor
+
+  &:hover {
+    color: $primary-color; // Cor de destaque ao passar o mouse
+  }
+}
+
+// Remove o highlight padrão ao clicar em links e botões em dispositivos móveis
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+// Estilos globais para inputs e textarea
+input, textarea {
+  border-radius: 4px; // Arredonda as bordas
+  border: 1px solid $border-color; // Borda padrão
+  padding: 0.5rem; // Espaçamento interno
+  font-size: 1rem; // Tamanho da fonte
+  background-color: $background-color; // Cor de fundo
+
+  &:focus {
+    border-color: $primary-color; // Muda a cor da borda ao focar
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2); // Adiciona uma sombra de foco
+    outline: none; // Remove o outline padrão
+  }
+}
+
+// Estilos para o elemento select
+select {
+  appearance: none; // Remove a aparência padrão
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: $background-color;
+
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+    outline: none;
+  }
+}
+
+// Estilos de navegação
+nav {
+  display: flex;
+  gap: $spacing-medium; // Espaçamento entre os links
+
+  a {
+    font-weight: bold; // Links em negrito
+    color: $foreground-color;
+    padding: 0.5rem 1rem; // Espaçamento interno dos links
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-color; // Cor de destaque ao passar o mouse
+    }
+  }
+}
+
+// Estilos responsivos para a navegação em telas pequenas
+@include respond-to(sm) {
+  nav {
+    flex-direction: column; // Muda para coluna em dispositivos pequenos
+    align-items: center;
+
+    a {
+      padding: 0.75rem; // Aumenta o padding para facilitar o toque
+      text-align: center; // Centraliza o texto dos links
+    }
+  }
+}
+
+// Margem padrão entre seções, páginas e componentes
+section, .page, .component {
+  margin-top: $spacing-large; // Espaçamento superior para separar seções
+  margin-bottom: $spacing-large; // Espaçamento inferior para separar seções
+}

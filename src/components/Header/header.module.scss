@@ -1,0 +1,187 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.header {
+  background: $background-color;
+}
+
+.headerInner {
+  max-width: 1200px;
+  height: 5rem;
+  margin: 0 auto;
+  padding: 0 $spacing-medium; // Apenas padding horizontal para alinhamento, sem margens internas
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.menuToggle {
+  display: none;
+}
+
+.menuButton {
+  display: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.menuIcon {
+  display: block;
+  width: 100%;
+  height: 0.25rem;
+  background: $foreground-color;
+  position: relative;
+  transition: background 0.3s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0.25rem;
+    background: $foreground-color;
+    transition: transform 0.3s ease;
+  }
+
+  &::before {
+    top: -0.5rem;
+  }
+
+  &::after {
+    top: 0.5rem;
+  }
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: auto; // Usado para empurrar a nav para a direita; sem margem inferior
+
+  a {
+    padding: 0 $spacing-medium; // Padding interno, sem margem entre links
+    height: 5rem;
+    line-height: 5rem;
+    color: $foreground-color;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.loginButton {
+  @include button-style($primary-color, darken($primary-color, 10%));
+  color: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 0.1rem 2.5rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(241, 238, 238, 0.993);
+  }
+}
+
+// Mobile styles
+@include respond-to(sm) {
+  .headerInner {
+    padding: 0 $spacing-small; // Ajuste do padding horizontal em telas menores
+    justify-content: center;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+  }
+
+  .menuButton {
+    display: block;
+    margin-right: auto;
+  }
+
+  .navMenu {
+    display: none;
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    background: $background-color;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+
+    a {
+      padding: 0.75rem $spacing-medium;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  }
+
+  .menuToggle:checked + .menuButton + .navMenu {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .menuToggle:checked + .menuButton .menuIcon {
+    background: transparent;
+  }
+
+  .menuToggle:checked + .menuButton .menuIcon::before {
+    transform: rotate(45deg);
+    top: 0;
+  }
+
+  .menuToggle:checked + .menuButton .menuIcon::after {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+
+  .loginButton {
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+}
+
+// Small mobile styles
+@include respond-to(xs) {
+  .logo {
+    width: 100px;
+  }
+
+  .navMenu a {
+    font-size: 0.85rem;
+  }
+}
+
+// Larger screens
+@include respond-to(md) {
+  .navMenu a {
+    padding: 0 $spacing-medium;
+  }
+}
