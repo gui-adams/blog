@@ -1,0 +1,60 @@
+// servicesSection - Seção de Introdução dos Serviços
+.servicesSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  gap: 1rem;
+
+  h2 {
+    font-size: 2rem;
+    color: #374754;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  span {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #252430;
+    font-family: 'DM Sans', sans-serif;
+    max-width: 800px;
+  }
+}
+
+// iconSection - Seção de Ícones e Descrições dos Serviços
+.iconSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  .iconItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 260px;
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 1.2rem;
+      color: #374754;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #252430;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    svg {
+      margin-bottom: 0.5rem;
+    }
+  }
+}

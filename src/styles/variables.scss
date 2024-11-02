@@ -1,17 +1,22 @@
-// src/styles/variables.scss
+// Cores principais
 $background-color: #ffffff;
 $foreground-color: #252430;
 $primary-color: #0074bc;
 $secondary-color: #005fa3;
 $error-color: #ff0000;
-$border-color: #e0e0e0; // ou qualquer cor desejada
+$border-color: #e0e0e0;
 
+// Tipografia
 $font-family: 'DM Sans', sans-serif;
-$spacing-unit: 1rem;
+$primary-text-color: #374754;
+$secondary-text-color: #252430;
+
+// Espaçamento
 $spacing-small: 0.5rem;
 $spacing-medium: 1rem;
 $spacing-large: 2rem;
 
+// Breakpoints para responsividade
 $breakpoint-xs: 480px;
 $breakpoint-sm: 768px;
 $breakpoint-md: 1024px;
