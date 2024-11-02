@@ -1,0 +1,67 @@
+// src/components/Lgpd/styles.module.scss
+
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.lgpd {
+  text-align: center;
+  margin: $spacing-large 0;
+
+  .lgpdHeader {
+    h2 {
+      font-size: 2.4rem;
+      color: $primary-text-color; // Aplica a cor do texto principal
+      font-family: $font-family;
+      margin-bottom: $spacing-small;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+      color: $secondary-text-color; // Aplica a cor do texto secundário
+      padding-top: $spacing-small;
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: $font-family;
+    }
+  }
+}
+
+.iconSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-large;
+  padding: $spacing-large 0;
+
+  .iconRow {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-large;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .iconItem {
+    text-align: center;
+    flex: 1 1 200px;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-medium;
+
+    svg {
+      color: $primary-color; // Define a cor dos ícones
+      width: 48px;
+      height: 48px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $secondary-text-color; // Aplica a cor do texto secundário
+      font-family: $font-family;
+      margin-top: 0.5rem;
+    }
+  }
+}

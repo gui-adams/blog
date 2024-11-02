@@ -1,36 +1,35 @@
-// servicesSection - Seção de Introdução dos Serviços
+// src/components/Conteudo/styles.module.scss
+
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .servicesSection {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
-  gap: 1rem;
+  padding: $spacing-large;
+  gap: $spacing-small;
 
   h2 {
-    font-size: 2rem;
-    color: #374754;
-    font-family: 'DM Sans', sans-serif;
-    margin-bottom: 1rem;
+    @include typography-h2;
   }
 
   span {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: #252430;
-    font-family: 'DM Sans', sans-serif;
+    @include typography-span;
     max-width: 800px;
   }
 }
 
-// iconSection - Seção de Ícones e Descrições dos Serviços
+// src/components/Conteudo/styles.module.scss
+
 .iconSection {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
-  padding: 2rem 0;
+  gap: $spacing-large; // Aumenta o espaçamento entre os ícones
+  padding: $spacing-large 0;
 
   .iconItem {
     display: flex;
@@ -38,23 +37,32 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    max-width: 260px;
-    gap: 0.5rem;
+    max-width: 220px; // Aumenta a largura máxima dos ícones
+    gap: $spacing-medium; // Espaçamento interno ajustado
 
     h3 {
-      font-size: 1.2rem;
-      color: #374754;
-      font-weight: 600;
+      @include typography-h3;
     }
 
     p {
-      font-size: 1rem;
-      color: #252430;
-      font-family: 'DM Sans', sans-serif;
+      @include typography-p;
     }
 
     svg {
-      margin-bottom: 0.5rem;
+      margin-bottom: $spacing-small;
+      width: 48px;
+      height: 48px;
     }
+  }
+}
+
+// Adiciona responsividade para garantir um layout adequado em diferentes tamanhos de tela
+@media (max-width: $breakpoint-md) {
+  .iconSection {
+    gap: $spacing-medium; // Reduz o espaço em telas menores
+  }
+
+  .iconItem {
+    max-width: 180px; // Limita a largura dos ícones em dispositivos menores
   }
 }

@@ -1,5 +1,7 @@
 // src/styles/mixins.scss
 
+// src/styles/mixins.scss
+
 @mixin respond-to($breakpoint) {
   @if $breakpoint == xs {
     @media (max-width: $breakpoint-xs) { @content; }
@@ -13,6 +15,46 @@
     @media (max-width: $breakpoint-xl) { @content; }
   }
 }
+
+// src/styles/mixins.scss
+
+@mixin typography-h2 {
+  font-size: 2.4rem; // Ajuste conforme necessário
+  color: $primary-text-color;
+  font-family: $font-family;
+  margin-bottom: $spacing-small;
+}
+
+// src/styles/mixins.scss
+
+@mixin typography-span {
+  font-size: $font-size-span;
+  line-height: 1.5rem;
+  color: $secondary-text-color;
+  font-family: $font-family;
+}
+
+// src/styles/mixins.scss
+
+@mixin typography-h3 {
+  font-size: $font-size-h3;
+  color: $primary-text-color;
+  font-weight: 600;
+  font-family: $font-family;
+}
+
+// src/styles/mixins.scss
+
+@mixin typography-p {
+  font-size: $font-size-p;
+  line-height: 1.5rem;
+  color: $secondary-text-color;
+  font-family: $font-family;
+}
+
+
+// Outros mixins, como typography-h3, typography-p, etc.
+
 
 @mixin button-style($bg-color, $hover-color) {
   background-color: $bg-color;
@@ -33,3 +75,16 @@
     transform: scale(0.98);
   }
 }
+
+.my-class {
+  font-size: 1.2rem;
+
+  @include respond-to(sm) {
+    font-size: 1rem;
+  }
+
+  @include respond-to(xs) {
+    font-size: 0.8rem;
+  }
+}
+
