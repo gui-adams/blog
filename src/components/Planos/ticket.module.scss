@@ -1,0 +1,199 @@
+.planos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 4rem 0;
+
+  @media screen and (max-width: 768px) {
+    margin: 2rem 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    margin: 1.5rem 0;
+  }
+}
+
+.planos2 {
+  h2 {
+    font-size: 2.4rem;
+    color: #374754;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1.5rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 1.8rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    color: #252430;
+    font-family: 'DM Sans', sans-serif;
+
+    span {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
+}
+
+.style {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px #d1d1d1;
+  margin-top: 2rem;
+  overflow-x: auto; // Permite rolagem horizontal em dispositivos pequenos
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 8px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 1500px;
+    padding: 15px;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; // Define uma largura mínima para evitar que os conteúdos sejam espremidos
+
+  th, td {
+    vertical-align: middle;
+    padding: 5px 10px;
+    white-space: nowrap; // Evita quebras de linha nas células
+  }
+
+  th {
+    text-align: center;
+    color: #374754;
+    font-weight: bold;
+    font-size: 1.1rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  td {
+    text-align: center;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 5px 10px;
+
+  span {
+    display: block;
+    margin: 0;
+  }
+
+  .icon {
+    display: block;
+    margin: 0 auto;
+    color: #0074bc;
+    font-size: 1rem;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.tr:hover {
+  background-color: #f9f9f9;
+
+  @media screen and (min-width: 1920px) {
+    background-color: #f0f0f0;
+  }
+}
+
+/* Botão "Saiba Mais" */
+.saibaMaisContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.saibaMaisButton {
+  background-color: #0074bc;
+  border: 0;
+  padding: 0.6rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 3rem;
+  color: #fbfbfb;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+
+  &:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 80%;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

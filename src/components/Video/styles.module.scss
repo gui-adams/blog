@@ -1,0 +1,34 @@
+// src/components/Video/styles.module.scss
+
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.videoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $spacing-small $spacing-medium;
+  background-color: $background-color;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 16px; // Borda arredondada para o contêiner
+  overflow: hidden; // Garante que o vídeo siga o contorno arredondado do contêiner
+
+  @include respond-to(md) {
+    max-width: 100%;
+    padding: $spacing-small;
+  }
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 16px; // Aumenta o arredondamento dos cantos do vídeo
+  aspect-ratio: 16 / 9;
+
+  @include respond-to(sm) {
+    height: 200px;
+  }
+}

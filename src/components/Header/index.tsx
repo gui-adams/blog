@@ -23,6 +23,7 @@ export function Header() {
           <Link href="/#faq">FAQ</Link>
           <Link href="/#sobre">Sobre</Link>
           <Link href="/parceiro">Parceiros</Link>
+          <Link href="/blog">Blog</Link>
           <Link href="https://app.podium.com.br/login" className={styles.loginButton}>
             Login
           </Link>
