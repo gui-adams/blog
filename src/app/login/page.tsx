@@ -1,49 +1,90 @@
-import styles from '@/app/login/styles.module.scss';
-import logo from '/public/logo.svg';
-import Image from 'next/image';
-import { redirect } from 'next/navigation';
+import styles from './styles.module.scss'
+import logoImg from '/public/logo.svg'
+import Image from 'next/image'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
+import { api } from '@/services/api'
 
-export default function Login() {
-    async function handleLogin(formData: FormData) {
-        "use server";
+export default function Page(){
 
-        const email = formData.get("email");
-        const password = formData.get("password");
+  async function handleLogin(formData: FormData){
+    "use server"
 
-        if (!email || !password) {
-            return;
-        }
+    const email = formData.get("email")
+    const password = formData.get("password")
 
-        try {
-            const response = await fetch("/api/auth", {
-                method: "POST",
-                body: JSON.stringify({ email, password }),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-
-            if (!response.ok) {
-                console.error("Erro de autenticação");
-                return;
-            }
-
-            redirect("/portal");
-        } catch (err) {
-            console.error("Erro:", err);
-        }
+    if(email === "" || password === ""){
+      return;
     }
 
-    return (
-        <div className={styles.containerCenter}>
-            <Image src={logo} alt="Logo SW" />
-            <section className={styles.login}>
-                <form action={handleLogin}>
-                    <input type="email" required name="email" placeholder='Digite seu email...' className={styles.input} />
-                    <input type="password" required name="password" placeholder='************' className={styles.input} />
-                    <button type="submit">Acessar</button>
-                </form>
-            </section>
-        </div>
-    );
+    try{
+
+      const response = await api.post("/backblog/auth/login", {
+        email,
+        password
+      })
+
+      if(!response.data.token){
+        return;
+      }
+
+      console.log(response.data);
+
+      const expressTime = 24 * 60 * 60 * 1000
+        cookies().set("session", response.data.token, {
+        maxAge: expressTime,
+        path: "/",
+        httpOnly: false,
+      })
+
+    }catch(err){
+      console.log(err);
+      return;
+    }
+
+    redirect("/portal")
+
+  }
+
+  return(
+    <>
+      <div className={styles.containerCenter}>
+        <Image
+          src={logoImg}
+          alt="Logo"
+        />
+
+        <section className={styles.login}>
+          <form action={handleLogin}>
+            <input 
+              type="email"
+              required
+              name="email"
+              placeholder="Digite seu email..."
+              className={styles.input}
+            />
+
+            <input 
+              type="password"
+              required
+              name="password"
+              placeholder="***********"
+              className={styles.input}
+            />
+
+            <button type="submit" className={styles.button}>
+              Acessar
+            </button>
+          </form>
+
+          <Link href="/signup" className={styles.text}>
+            Não possui uma conta? Cadastre-se
+          </Link>
+
+        </section>
+
+      </div>      
+    </>
+  )
 }
