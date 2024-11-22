@@ -11,9 +11,6 @@ export function Sobre() {
       <div className={styles.texto}>
         <h2>Sobre Nós</h2>
         <p>
-          <span>Conheça a SimpleWay e nossos resultados</span>
-        </p>
-        <p>
           Com sede no Brasil, a SimpleWay é resultado da experiência de uma equipe com atuação no mercado de Proteção de Dados desde 1997.
           Nossa plataforma foi pensada para atender as necessidades de empresas de pequeno, médio e grande porte.
         </p>

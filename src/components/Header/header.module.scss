@@ -89,17 +89,34 @@
 }
 
 .loginButton {
-  @include button-style($primary-color, darken($primary-color, 10%));
-  color: $background-color;
+  color: #fbfbfb !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 50px !important;
+  background-color: #0473BA;
+  border: 0;
   padding: 0.1rem 2.5rem;
-  border-radius: 1.5rem;
+  border-radius: 1.5rem; /* Ajuste para deixar o arredondamento mais sutil */
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
   text-decoration: none;
+  margin-left: 1rem; /* Ajusta a margem para afastar do último item do nav */
+
+  &:hover {
+    background-color: #1a78d4;
+    color: #fbfbfb; /* Mantém o texto branco ao passar o mouse */
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 
   &:focus {
+    outline: none;
     box-shadow: 0 0 0 3px rgba(241, 238, 238, 0.993);
   }
 }
