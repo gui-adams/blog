@@ -1,6 +1,6 @@
 // src/app/portal/layout.tsx
-import { HeaderPortal } from '@/components/header_portal';
 import {Toaster} from 'sonner'
+import { HeaderPortal } from './components/header_portal';
 
 export default function PortalLayout({
   children,

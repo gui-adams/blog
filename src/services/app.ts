@@ -9,6 +9,6 @@ export const api = axios.create({
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: "https://backblog.simpleway.tech", // Atualizando para o subdomínio correto
+    baseURL: "http://localhost:8080", // Atualizando para o subdomínio correto
 });
 

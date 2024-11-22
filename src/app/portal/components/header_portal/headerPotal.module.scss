@@ -1,0 +1,68 @@
+
+.headerContainer{
+    height: 5rem;
+    background: #fbfbfb;
+  }
+  
+  .headerContent{
+    max-width: 1280px;
+    height: 5rem;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    nav{
+        display: flex;
+        align-items: center;
+        gap: 14px;
+  
+      a{
+        color: #374754;
+        text-decoration: none;
+        transition: color 0.5s;
+
+        &:hover{
+          color: #0473BA;
+        }
+  
+      }
+    }
+    button{
+      border:0;
+      background-color: transparent;
+      margin-left: 16px;
+      transition: transform 0.5x;
+
+
+      &:hover{
+        transform: scale(1.2);
+      }
+    }
+  }
+  
+
+  
+  
+  @media (max-width: 1280px){
+    .headerContainer{
+      height: 11rem;
+      padding: 0.5rem 0;
+    }
+  
+    .headerContent{
+      display: flex;
+      flex-direction: column;
+  
+      nav{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+  
+      .readyButton{
+        display: none;
+      }    
+    }
+  }
