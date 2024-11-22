@@ -1,11 +1,7 @@
 // src/global.d.ts
 
-interface Window {
-    RDStationForms?: {
-      createForm: (id: string, accountId: string) => void;
-    };
-  }
+declare var RDStationForms: any;
 
-  declare var RDStationForms: any;
-
-  
+// Declare outras variáveis globais que você precisar
+declare var myGlobalVariable: string;
+declare var myCustomFunction: (arg: number) => void;

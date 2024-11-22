@@ -66,7 +66,7 @@ export const Plataforma: React.FC = () => {
             </span>
           </p>
           <button onClick={handleButtonClick} className={styles.ctaButton}>
-            Garanta seu Teste Gratuito
+          Solicite uma Demonstração
           </button>
         </section>
         <div className={styles.imageContainer}>
