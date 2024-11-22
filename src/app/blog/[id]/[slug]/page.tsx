@@ -26,18 +26,19 @@ const Post = ({ params }: PostProps) => {
       try {
         const postData = await fetchPostById(id);
         setPost(postData);
-
-        // Busca posts relacionados após carregar o post principal
+  
         if (postData.categories && postData.categories.length > 0) {
           const related = await fetchRelatedPosts(postData.categories[0].id, postData.id);
           setRelatedPosts(related);
         }
       } catch (error) {
         console.error("Erro ao buscar o post:", error);
+        setPost(null);
       }
     };
     loadPost();
   }, [id]);
+  
 
   if (!post) return <p>Carregando...</p>;
 
@@ -73,13 +74,13 @@ const Post = ({ params }: PostProps) => {
           year: "numeric"
         })}</p>
 
-        <Image
-          src={post.imagePath || "/default-image.jpg"}
-          alt={`Imagem ilustrativa do artigo ${post.title}`}
-          width={800}
-          height={400}
-          className={styles.image}
-        />
+          <Image
+            src={post.imagePath || "/default-image.jpg"}
+            alt={`Imagem ilustrativa do artigo ${post.title}`}
+            width={800}
+            height={400}
+            priority // Adiciona prioridade de carregamento
+          />
 
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content }} />
 
