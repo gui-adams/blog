@@ -1,0 +1,186 @@
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.category {
+  background-color: #29AAE3;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.date {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.content {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 40px;
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  a {
+    color: #0070f3;
+    text-decoration: underline;
+
+    &:hover {
+      color: #0056b3;
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #333;
+  margin-top: 20px;
+  gap: 10px; // Espaçamento entre "Compartilhe" e os ícones
+  justify-content: flex-end; // Alinha para o lado direito
+
+  p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .socialIcons {
+    display: flex;
+    gap: 10px;
+
+    a {
+      color: #29AAE3;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+
+      &:hover {
+        color: #29AAE3;
+      }
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .share {
+    flex-direction: row; // Mantém "Compartilhe" e ícones na mesma linha
+    justify-content: flex-start;
+  }
+
+  .relatedSection {
+    margin-top: 40px;
+  }
+  
+  .relatedTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    color: #333;
+  }
+  
+  .relatedGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .relatedCard {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .relatedImage {
+    position: relative;
+  }
+  
+  .relatedImage img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .categoria {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #29AAE3;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  
+  .relatedTitle {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .textOverlay {
+    padding: 15px;
+    text-align: center;
+  
+    .botao {
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #29AAE3;
+      text-decoration: none;
+      font-weight: bold;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}  

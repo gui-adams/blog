@@ -13,27 +13,55 @@
     padding: 0 $spacing-medium;
     max-width: 1280px;
     margin: 0 auto;
+  
+    /* Adiciona espaço à direita da logo */
+    .logo-icons {
+      margin-right: $spacing-large * 2; /* Aumenta o espaço entre a logo e as colunas */
+    }
   }
-
+  
+  .links {
+    flex: 1 1 150px;
+    padding-left: $spacing-medium;
+  
+    h4 {
+      font-weight: bold;
+      margin-bottom: $spacing-small;
+    }
+  
+    a {
+      display: block;
+      color: $white-color;
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      line-height: 1.8;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
   .logo-icons {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Centraliza a logo e os ícones horizontalmente */
     margin-bottom: $spacing-small;
-
+  
     .logo {
-      margin-bottom: $spacing-small;
+      margin-bottom: $spacing-small; /* Espaço entre a logo e os ícones */
     }
-
+  
     .icones {
       display: flex;
+      justify-content: center; /* Centraliza os ícones */
       gap: $spacing-small;
-
+  
       .icon {
         color: $white-color;
         font-size: 1.5rem; 
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+  
         &:hover {
           transform: scale(1.1);
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -41,6 +69,7 @@
       }
     }
   }
+  
 
   .links {
     flex: 1 1 150px;
@@ -101,6 +130,8 @@
           text-align: center;
           font-size: 0.95rem;
           background-color: $white-color;
+          color: #000000; /* Texto preto */
+
         }
 
         button {
@@ -147,12 +178,40 @@
     align-items: center;
     padding: 0;
   }
-
-  .newsletter form {
-    width: 100%;
-  }
-
-  .newsletter .inputField, .newsletter button {
-    width: 90%;
-  }
 }
+  .newsletter form {
+    display: flex;
+    flex-direction: row; /* Alinha os elementos lado a lado */
+    gap: $spacing-small; /* Espaço entre o input e o botão */
+    justify-content: center; /* Centraliza os elementos */
+    align-items: center; /* Alinha verticalmente */
+    
+    .inputField {
+      padding: 12px;
+      width: 100%;
+      max-width: 280px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.95rem;
+      background-color: $white-color;
+    }
+  
+    button {
+      padding: 12px;
+      max-width: 140px;
+      background-color: #29AAE3;
+      color: $white-color;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: $white-color;
+        color: $primary-color;
+      }
+    }
+  }
+  

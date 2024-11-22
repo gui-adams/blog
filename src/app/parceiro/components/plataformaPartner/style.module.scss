@@ -1,0 +1,232 @@
+.containerHeader {
+  min-height: calc(100vh - 2rem);
+  margin: 0 auto;
+  max-width: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+
+  /* Estilo para o contêiner da imagem */
+  .imagem {
+    flex: 1; /* A imagem ocupará 50% da largura */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem; /* Adiciona espaçamento à esquerda */
+    padding-right: 2rem; /* Adiciona espaçamento à direita */
+
+    img {
+      width: 40vw; /* Usa largura relativa à viewport */
+      max-width: 500px; /* Limite máximo para telas grandes */
+      height: auto;
+    }
+  }
+
+  /* Responsividade para telas menores */
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+
+    .imagem {
+      padding-left: 0; /* Remove padding lateral */
+      padding-right: 0;
+      
+      img {
+        width: 50vw;
+        max-width: 400px;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+
+    .imagem {
+      img {
+        width: 60vw;
+        max-width: 350px;
+        height: auto;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0 1rem;
+
+    .imagem {
+      img {
+        width: 70vw;
+        max-width: 280px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 85%; /* Limita o tamanho máximo em telas ultra-largas */
+
+    .imagem {
+      img {
+        width: 35vw;
+        max-width: 700px;
+        height: auto;
+      }
+    }
+  }
+}
+
+.ctaText {
+  max-width: 60%; /* Ajusta para usar largura relativa */
+  padding-left: 5%;
+  text-align: left;
+
+  .textoDestacado {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #0473BA;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    line-height: 3rem;
+    font-weight: 600;
+    margin-top: -4rem;
+    color: #374754;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  span {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    color: #252430;
+    font-weight: 200;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .subtextoDestacado {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    color: #0473BA;
+    font-weight: 600;
+  }
+
+  .btn {
+    background-color: #0473BA;
+    border: 0;
+    padding: 0.8rem 2.5rem;
+    margin-top: 1rem;
+    border-radius: 3rem;
+    color: #fbfbfb;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease; /* Transição suave */
+    cursor: pointer;
+    display: inline-block; /* Para que o <a> se comporte como botão */
+
+    &:hover {
+      transform: scale(1.05); /* Cresce o botão */
+      background-color: #035A96; /* Muda a cor do botão ao passar o mouse */
+    }
+
+    &:active {
+      transform: scale(0.98); /* Efeito ao clicar */
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    padding-left: 0;
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 1.8rem;
+      line-height: 2.8rem;
+      margin-top: 0;
+    }
+
+    .textoDestacado {
+      font-size: 1.8rem;
+    }
+
+    span {
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.6rem 2rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: 0;
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+
+    .textoDestacado {
+      font-size: 1.6rem;
+    }
+
+    span {
+      font-size: 1.1rem;
+      line-height: 1.4rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1.8rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 1.4rem;
+      line-height: 2rem;
+    }
+
+    .textoDestacado {
+      font-size: 1.4rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 70%;
+    
+    h1, .textoDestacado {
+      font-size: 3rem;
+    }
+
+    span {
+      font-size: 1.8rem;
+    }
+
+    .btn {
+      padding: 1rem 3.5rem;
+    }
+  }
+}

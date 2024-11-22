@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { api } from '@/services/api';
+import { api } from './services/app';
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
   // Verifica a existência do token no cookie
   const token = req.cookies.get('session')?.value;
 
-  // Redireciona para login se o usuário tentar acessar /portal sem um token
+  
   if (pathname.startsWith("/portal")) {
     if (!token) {
       return NextResponse.redirect(new URL("/", req.url));
@@ -38,13 +38,10 @@ async function validateToken(token: string) {
     const response = await api.get("/backblog/auth/validate-token", {
       headers: { Authorization: `Bearer ${token}` }
     });
-    const isValid = response.status === 200;
-
-    console.log("Resultado da validação do token no backend:", isValid); // Log do resultado da validação
-
-    return isValid;
+    return response.status === 200;
   } catch (error) {
-    console.error("Token inválido:", error);
-    return false;
+    console.error("Token inválido ou expirado:", error);
+    return false; // Retorna false para redirecionar o usuário caso o token seja inválido ou expirado
   }
 }
+

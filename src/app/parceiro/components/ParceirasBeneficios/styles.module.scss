@@ -1,0 +1,87 @@
+.parceirasBeneficios {
+  background-color: #f9fafb;
+  padding: 3rem 2rem;
+  text-align: center;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #374754;
+  }
+
+  .description {
+    font-size: 1rem;
+    color: #5a5a5a;
+    margin-bottom: 2.5rem;
+  }
+
+  .benefitsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Duas colunas */
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .benefitItem {
+    background-color: transparent; /* Remove o fundo branco */
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+
+    h4 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0473BA;
+    }
+
+    p {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #6a6a6a;
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 1rem;
+      color: #0473BA; /* Cor azul para os ícones */
+    }
+  }
+
+  .callToAction {
+    margin-top: 2rem;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #5a5a5a;
+      margin-bottom: 1.5rem;
+    }
+
+    .button {
+      background-color: #0473BA;
+      color: #fff;
+      padding: 0.75rem 2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #0473BA;
+      }
+    }
+  }
+}

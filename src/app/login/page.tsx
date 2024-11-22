@@ -1,10 +1,9 @@
 import styles from './styles.module.scss'
 import logoImg from '/public/logo.svg'
 import Image from 'next/image'
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-import { api } from '@/services/api'
+import { api } from '@/services/app'
 
 export default function Page(){
 
@@ -31,7 +30,7 @@ export default function Page(){
 
       console.log(response.data);
 
-      const expressTime = 24 * 60 * 60 * 1000
+      const expressTime = 2 * 60 * 60 * 1000;
         cookies().set("session", response.data.token, {
         maxAge: expressTime,
         path: "/",
@@ -77,11 +76,7 @@ export default function Page(){
               Acessar
             </button>
           </form>
-
-          <Link href="/signup" className={styles.text}>
-            Não possui uma conta? Cadastre-se
-          </Link>
-
+          
         </section>
 
       </div>      

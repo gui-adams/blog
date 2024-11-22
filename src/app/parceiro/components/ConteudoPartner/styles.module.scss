@@ -1,0 +1,174 @@
+.conteudoPartner {
+  background-color: #f9fafb;
+  padding: 2rem;
+  text-align: center;
+
+  /* Texto superior */
+  .textTop {
+    margin-bottom: 2rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #374754;
+    max-width: 800px;
+    margin: 0 auto; /* Centraliza o texto */
+  }
+
+  /* Contêiner principal que segura a imagem e a coluna de benefícios */
+  .container {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    gap: 5px; /* Define a distância exata entre a imagem e a coluna */
+    flex-wrap: wrap; /* Para responsividade */
+    max-width: 1200px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza o container */
+  }
+
+  .imageContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image {
+    border-radius: 8px;
+    width: 100%;
+    max-width: 280px; /* Ajuste para monitores grandes */
+    height: auto;
+    object-fit: cover;
+  }
+
+  .textContainer {
+    flex: 1;
+    max-width: 500px; /* Reduz a largura para ficar proporcional */
+  }
+
+  /* Lista de benefícios com números */
+  .benefitsList {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+
+      h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374754;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: #374754;
+        margin-top: 0.3rem;
+      }
+    }
+
+    .number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      background-color: #0473BA;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+  }
+
+  /* Responsividade para telas pequenas (celulares e tablets) */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* Coloca a imagem acima da lista */
+      align-items: center;
+    }
+
+    .textContainer {
+      text-align: center; /* Centraliza o texto */
+    }
+
+    .benefitsList {
+      text-align: center; /* Centraliza a lista */
+
+      li {
+        justify-content: center; /* Centraliza os itens da lista */
+      }
+    }
+
+    .image {
+      max-width: 200px; /* Ajuste a largura da imagem para celulares */
+    }
+  }
+
+  /* Responsividade para monitores grandes (25 a 29 polegadas) */
+  @media (min-width: 1600px) {
+    .container {
+      max-width: 1400px; /* Aumenta a largura máxima para monitores grandes */
+    }
+
+    .image {
+      max-width: 350px; /* Aumenta o tamanho da imagem para monitores grandes */
+    }
+
+    .textContainer {
+      max-width: 600px; /* Aumenta a largura da coluna de texto */
+    }
+
+    .benefitsList h4 {
+      font-size: 1.3rem; /* Aumenta o tamanho da fonte */
+    }
+
+    .benefitsList p {
+      font-size: 1.1rem; /* Aumenta o tamanho do texto descritivo */
+    }
+  }
+
+  /* Responsividade para notebooks */
+  @media (min-width: 1024px) and (max-width: 1599px) {
+    .container {
+      max-width: 1100px; /* Limita a largura para notebooks */
+    }
+
+    .image {
+      max-width: 300px; /* Ajuste o tamanho da imagem para notebooks */
+    }
+
+    .textContainer {
+      max-width: 550px; /* Ajuste o tamanho da coluna de texto */
+    }
+  }
+
+  /* Responsividade para dispositivos menores (Samsung S8 e similares) */
+  @media (max-width: 360px) {
+    .image {
+      max-width: 180px; /* Reduz o tamanho da imagem para caber em telas muito pequenas */
+    }
+
+    .benefitsList {
+      padding: 0 1rem; /* Adiciona um pouco de espaçamento lateral */
+    }
+
+    .benefitsList h4 {
+      font-size: 1rem; /* Ajusta a fonte para telas pequenas */
+    }
+
+    .benefitsList p {
+      font-size: 0.85rem; /* Reduz o tamanho do texto descritivo */
+    }
+
+    .number {
+      width: 35px; /* Reduz o tamanho dos números */
+      height: 35px;
+      font-size: 1.3rem;
+    }
+  }
+}

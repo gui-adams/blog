@@ -1,0 +1,115 @@
+.main {
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.heading {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #000;
+  padding-bottom: 0.5rem;
+}
+
+/* Espaçamento adicional abaixo do grid de posts */
+.artigosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  row-gap: 8rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 4rem; /* Aumenta o espaçamento para 4rem abaixo do grid */
+}
+
+.artigoCard {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: visible;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.artigoCard:hover {
+  transform: translateY(-5px);
+}
+
+.artigoHeader {
+  position: relative;
+}
+
+.artigoImg {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.textOverlay {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  width: calc(100% - 30px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  min-height: 100px;
+}
+
+.titulo {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #717171;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.botao {
+  display: inline-block;
+  color: #29AAE3;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.botao:hover {
+  text-decoration: underline;
+}
+
+.categoria {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #29AAE3;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+/* Estilos adicionais para o componente de paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 2rem;
+  margin-bottom: 4rem; /* Aumenta o espaçamento abaixo do componente de paginação para 4rem */
+}
