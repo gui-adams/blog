@@ -1,58 +1,73 @@
 import React from 'react';
-import { FaTasks, FaSitemap, FaMap, FaShieldAlt, FaDatabase, FaFileAlt, FaCheckSquare, FaUserShield } from 'react-icons/fa';
+import {
+  FaTasks,
+  FaSitemap,
+  FaMap,
+  FaShieldAlt,
+  FaDatabase,
+  FaFileAlt,
+  FaCheckSquare,
+  FaUserShield,
+} from 'react-icons/fa';
 import styles from '@/components/Lgpd/styles.module.scss';
+import { getDataHome } from '@/utils/actions/get-data';
 
-export function Lgpd() {
-  return (
-    <>
-      <div className={styles.lgpd}>
-        <div className={styles.lgpdHeader}>
-          <h2>LGPD</h2>
-          <p>
-            SimpleWay simplifica a jornada de conformidade com a Lei Geral de Proteção de Dados,
-            empregando tecnologia para aprimorar ações, como:
-          </p>
-        </div>
-      </div>
+export const Lgpd = async () => {
+  try {
+    // Busca os dados da API Cosmic diretamente no lado do servidor
+    const data = await getDataHome();
+    const metadata = data?.object?.metadata;
 
-      <section className={styles.iconSection}>
-        <div className={styles.iconRow}>
-          <div className={styles.iconItem}>
-            <FaTasks size={48} />
-            <p>Gerenciamento do Programa de Proteção e Privacidade de Dados</p>
-          </div>
-          <div className={styles.iconItem}>
-            <FaSitemap size={48} />
-            <p>Visão da estrutura organizacional por organograma e processo de negócios</p>
-          </div>
-          <div className={styles.iconItem}>
-            <FaMap size={48} />
-            <p>Mapeamento de operações de tratamento, fornecedores, repositórios e mais</p>
-          </div>
-          <div className={styles.iconItem}>
-            <FaShieldAlt size={48} />
-            <p>Avaliação de privacidade (ISO 27001) e questionários específicos</p>
-          </div>
-        </div>
-        <div className={styles.iconRow}>
-          <div className={styles.iconItem}>
-            <FaDatabase size={48} />
-            <p>Gestão do dicionário de dados com mais de 600 itens inclusos</p>
-          </div>
-          <div className={styles.iconItem}>
-            <FaFileAlt size={48} />
-            <p>Relatórios</p>
-          </div>
-          <div className={styles.iconItem}>
-            <FaCheckSquare size={48} />
-            <p>Programas de Compliance</p>
-          </div>
-          <div className={styles.iconItem}>
-            <FaUserShield size={48} />
-            <p>Titulares</p>
+    // Verifica se os campos existem e define valores padrão
+    const titulo3 = metadata?.titulo_3 || 'LGPD';
+    const description3 =
+      metadata?.description_3 || 'Descrição não disponível no momento.';
+    const icones = [
+      { icon: <FaTasks size={48} />, text: metadata?.icone_4 || 'Conteúdo não disponível.' },
+      { icon: <FaSitemap size={48} />, text: metadata?.icone_5 || 'Conteúdo não disponível.' },
+      { icon: <FaMap size={48} />, text: metadata?.icone_6 || 'Conteúdo não disponível.' },
+      { icon: <FaShieldAlt size={48} />, text: metadata?.icone_7 || 'Conteúdo não disponível.' },
+      { icon: <FaDatabase size={48} />, text: metadata?.icone_8 || 'Conteúdo não disponível.' },
+      { icon: <FaFileAlt size={48} />, text: metadata?.icone_9 || 'Conteúdo não disponível.' },
+      { icon: <FaCheckSquare size={48} />, text: metadata?.icone_10 || 'Conteúdo não disponível.' },
+      { icon: <FaUserShield size={48} />, text: metadata?.icone_11 || 'Conteúdo não disponível.' },
+    ];
+
+    // Divide os ícones em duas linhas com 4 ícones cada
+    const firstRow = icones.slice(0, 4);
+    const secondRow = icones.slice(4, 8);
+
+    return (
+      <>
+        <div className={styles.lgpd}>
+          <div className={styles.lgpdHeader}>
+            <h2>{titulo3}</h2>
+            <p>{description3}</p>
           </div>
         </div>
-      </section>
-    </>
-  );
-}
+
+        <section className={styles.iconSection}>
+          <div className={styles.iconRow}>
+            {firstRow.map((item, index) => (
+              <div key={index} className={styles.iconItem}>
+                {item.icon}
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className={styles.iconRow}>
+            {secondRow.map((item, index) => (
+              <div key={index} className={styles.iconItem}>
+                {item.icon}
+                <p>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </>
+    );
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    return <div>Error loading content</div>;
+  }
+};

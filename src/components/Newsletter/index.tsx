@@ -1,8 +1,10 @@
 "use client";
+
 import Image from 'next/image';
-import { useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import styles from './styles.module.scss';
 import politica_new from '/public/politica_new.svg';
+import { getDataHome } from '@/utils/actions/get-data';
 
 export function Newsletter() {
   const [isChecked, setIsChecked] = useState(false);
@@ -10,6 +12,13 @@ export function Newsletter() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  // Estado para os textos dinâmicos
+  const [dynamicTexts, setDynamicTexts] = useState({
+    title: 'Se inscreva na nossa newsletter.',
+    subtitle: 'Venha se atualizar sobre Privacidade e Proteção de Dados.',
+    checkboxLabel: 'Eu concordo e aceito a Política de Privacidade.',
+  });
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -42,6 +51,26 @@ export function Newsletter() {
     }
   };
 
+  // Busca os textos do Cosmic no lado do cliente
+  useEffect(() => {
+    const fetchDynamicTexts = async () => {
+      try {
+        const data = await getDataHome(); // Função para buscar dados do Cosmic
+        const metadata = data?.object?.metadata;
+
+        setDynamicTexts({
+          title: metadata?.newsletter_title || dynamicTexts.title,
+          subtitle: metadata?.newsletter_subtitle || dynamicTexts.subtitle,
+          checkboxLabel: metadata?.newsletter_checkbox || dynamicTexts.checkboxLabel,
+        });
+      } catch (error) {
+        console.error('Erro ao buscar textos do Cosmic:', error);
+      }
+    };
+
+    fetchDynamicTexts();
+  }, []);
+
   return (
     <div className={styles.newsletter}>
       {!submitted ? (
@@ -51,9 +80,9 @@ export function Newsletter() {
           </div>
           <form className={styles.formnew} onSubmit={handleSubmit}>
             <div className={styles.rd}>
-              <h3>Se inscreva na nossa newsletter.</h3>
+              <h3>{dynamicTexts.title}</h3>
               <p>
-                <span>Venha se atualizar sobre Privacidade e Proteção de Dados.</span>
+                <span>{dynamicTexts.subtitle}</span>
               </p>
               <input
                 type="text"
@@ -78,7 +107,7 @@ export function Newsletter() {
                 onChange={handleCheckboxChange}
               />
               <label htmlFor="privacyPolicy">
-                Eu concordo e aceito a <strong><u>Política de Privacidade</u></strong>
+                {dynamicTexts.checkboxLabel}
               </label>
             </div>
             <button type="submit" disabled={!isChecked}>
