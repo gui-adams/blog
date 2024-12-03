@@ -3,6 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Pagination from "./components/Pagination";
 
+// Função para normalizar a data no formato DD/MM/YYYY para YYYY-MM-DD
+const normalizeDate = (date: string): string => {
+    const [day, month, year] = date.split("/");
+    return `${year}-${month}-${day}`;
+};
+
 // Definindo a interface do post
 interface Post {
     id: string;
@@ -12,8 +18,8 @@ interface Post {
     published: boolean;
     imagePath: string;
     categories: Array<{ id: string; name: string }>;
-    createdAt: string;
-    updatedAt: string;
+    createdAt: string; // Mantém como string
+    updatedAt: string; // Mantém como string
 }
 
 interface BlogProps {
@@ -27,12 +33,26 @@ const fetchPosts = async (): Promise<Post[]> => {
     });
     const posts: Post[] = await response.json();
 
-    // Ordena os posts do mais recente para o mais antigo com base em updatedAt ou createdAt
-    return posts.sort((a, b) => {
-        const dateA = new Date(a.updatedAt || a.createdAt).getTime();
-        const dateB = new Date(b.updatedAt || b.createdAt).getTime();
-        return dateB - dateA; // Mantém o mais recente no topo
+   posts.map(post => ({
+        title: post.title,
+        updatedAt: post.updatedAt,
+        createdAt: post.createdAt
+    }));
+
+    const sortedPosts = posts.sort((a, b) => {
+        const dateA = new Date(normalizeDate(a.updatedAt || a.createdAt)).getTime();
+        const dateB = new Date(normalizeDate(b.updatedAt || b.createdAt)).getTime();
+        return dateB - dateA;
     });
+
+    console.log("Posts ordenados após normalização:", sortedPosts.map(post => ({
+        title: post.title,
+        updatedAt: post.updatedAt,
+        createdAt: post.createdAt
+    })));
+    
+
+    return sortedPosts;
 };
 
 // Componente principal do Blog

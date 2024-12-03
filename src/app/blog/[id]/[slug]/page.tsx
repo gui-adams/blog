@@ -6,8 +6,10 @@ import styles from "@/app/blog/[id]/Post.module.scss";
 import { fetchPostById, fetchRelatedPosts } from "../../services/postService";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
-import Link from "next/link";
 import RelatedPosts from "../../components/RelatedPosts";
+import { parseISO, format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import Loader from "../../components/Loader";
 
 interface PostProps {
   params: {
@@ -16,94 +18,92 @@ interface PostProps {
   };
 }
 
+const normalizeDate = (date: string): string => {
+  const [day, month, year] = date.split("/");
+  return `${year}-${month}-${day}`;
+};
+
 const Post = ({ params }: PostProps) => {
   const { id } = params;
   const [post, setPost] = useState<any>(null);
   const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
 
-  useEffect(() => {
+useEffect(() => {
     const loadPost = async () => {
-      try {
-        const postData = await fetchPostById(id);
-        setPost(postData);
-  
-        if (postData.categories && postData.categories.length > 0) {
-          const related = await fetchRelatedPosts(postData.categories[0].id, postData.id);
-          setRelatedPosts(related);
+        try {
+            const postData = await fetchPostById(id);
+            setPost(postData);
+
+            if (postData.categories && postData.categories.length > 0) {
+                const categoryIds = postData.categories.map((category: any) => category.id);
+                console.log("Categorias do post atual:", categoryIds);
+
+                const related = await fetchRelatedPosts(categoryIds, postData.id);
+                setRelatedPosts(related);
+            }
+        } catch (error) {
+            console.error("Erro ao buscar o post:", error);
+            setPost(null);
         }
-      } catch (error) {
-        console.error("Erro ao buscar o post:", error);
-        setPost(null);
-      }
     };
     loadPost();
-  }, [id]);
-  
+}, [id]);
 
-  if (!post) return <p>Carregando...</p>;
+
+  if (!post) return <Loader />;
 
   // URL fixa para o artigo
   const articleUrl = `https://simpleway.tech/blog/${post.id}/${post.slug}`;
 
   return (
     <>
-      {/* SEO Meta Tags */}
       <Head>
         <title>{post.title} | Nome do Site</title>
         <meta name="description" content={`Leia o artigo ${post.title}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={`Leia o artigo ${post.title}`} />
         <meta property="og:url" content={articleUrl} />
-        <meta property="og:image" content={post.imagePath || '/default-image.jpg'} />
+        <meta property="og:image" content={post.imagePath || "/default-image.jpg"} />
         <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={`Leia o artigo ${post.title}`} />
-        <meta name="twitter:image" content={post.imagePath || '/default-image.jpg'} />
       </Head>
 
       <div className={styles.main}>
-        {/* Informações do Post */}
         {post.categories && post.categories.length > 0 && (
           <span className={styles.category}>{post.categories[0].name}</span>
         )}
         <h1 className={styles.title}>{post.title}</h1>
-        <p className={styles.date}>{new Date(post.createdAt).toLocaleDateString("pt-BR", {
-          day: "numeric",
-          month: "long",
-          year: "numeric"
-        })}</p>
-
-          <Image
-            src={post.imagePath || "/default-image.jpg"}
-            alt={`Imagem ilustrativa do artigo ${post.title}`}
-            width={800}
-            height={400}
-            priority // Adiciona prioridade de carregamento
-          />
-
+        <p className={styles.date}>
+          {post.createdAt && !isNaN(Date.parse(normalizeDate(post.createdAt)))
+            ? format(parseISO(normalizeDate(post.createdAt)), "dd 'de' MMMM 'de' yyyy", { locale: ptBR })
+            : "Data inválida"}
+        </p>
+        <Image
+          src={post.imagePath || "/default-image.jpg"}
+          alt={`Imagem ilustrativa do artigo ${post.title}`}
+          width={800}
+          height={400}
+          priority
+        />
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content }} />
 
-        {/* Seção de compartilhamento */}
         <div className={styles.share}>
           <p>Compartilhe</p>
           <div className={styles.socialIcons}>
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" title="Compartilhar no Facebook">
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank">
               <FaFacebookF />
             </a>
-            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" title="Compartilhar no Twitter">
+            <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}`} target="_blank">
               <FaTwitter />
             </a>
-            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" title="Compartilhar no LinkedIn">
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`} target="_blank">
               <FaLinkedinIn />
             </a>
-            <a href={`https://wa.me/?text=${encodeURIComponent(post.title + " " + articleUrl)}`} target="_blank" rel="noopener noreferrer" title="Compartilhar no WhatsApp">
+            <a href={`https://wa.me/?text=${encodeURIComponent(post.title + " " + articleUrl)}`} target="_blank">
               <FaWhatsapp />
             </a>
           </div>
         </div>
 
-        {/* Seção de Posts Relacionados */}
         {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
       </div>
     </>

@@ -51,14 +51,31 @@ export const fetchPostById = async (id: string) => {
  * @param currentPostId ID do post atual para excluir dos resultados.
  * @returns Lista de posts relacionados limitados a 4 resultados.
  */
-export const fetchRelatedPosts = async (categoryId: string, currentPostId: string) => {
-    const response = await fetch(`https://backblog.simpleway.tech/backblog/post/search?category=${categoryId}`);
-    if (!response.ok) {
-        throw new Error(`Erro ao buscar posts relacionados: ${response.status}`);
-    }
+export const fetchRelatedPosts = async (categoryIds: string[], currentPostId: string) => {
+    try {
+        const response = await fetch(`https://backblog.simpleway.tech/backblog/post`);
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar posts relacionados: ${response.status}`);
+        }
 
-    const posts = await response.json();
-    return posts
-        .filter((post: any) => post.id !== currentPostId)
-        .slice(0, 4); // Limita a 4 posts relacionados
+        const allPosts = await response.json();
+
+        // Logs para depuração
+        console.log("IDs de categorias do post atual:", categoryIds);
+        console.log("Todos os posts disponíveis:", allPosts);
+
+        // Filtra os posts relacionados
+        const relatedPosts = allPosts.filter((post: any) => 
+            post.id !== currentPostId && // Exclui o post atual
+            post.categories.some((category: any) => categoryIds.includes(category.id)) // Verifica categorias
+        );
+
+        console.log("Posts relacionados encontrados:", relatedPosts);
+
+        return relatedPosts.slice(0, 4); // Limita a 4 posts relacionados
+    } catch (error) {
+        console.error("Erro ao buscar posts relacionados:", error);
+        return [];
+    }
 };
+
