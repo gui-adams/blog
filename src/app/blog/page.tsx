@@ -33,24 +33,17 @@ const fetchPosts = async (): Promise<Post[]> => {
     });
     const posts: Post[] = await response.json();
 
-   posts.map(post => ({
-        title: post.title,
-        updatedAt: post.updatedAt,
-        createdAt: post.createdAt
-    }));
-
+    // Ordena os posts apenas por `createdAt`
     const sortedPosts = posts.sort((a, b) => {
-        const dateA = new Date(normalizeDate(a.updatedAt || a.createdAt)).getTime();
-        const dateB = new Date(normalizeDate(b.updatedAt || b.createdAt)).getTime();
-        return dateB - dateA;
+        const dateA = new Date(normalizeDate(a.createdAt)).getTime();
+        const dateB = new Date(normalizeDate(b.createdAt)).getTime();
+        return dateB - dateA; // Mais recentes primeiro
     });
 
-    console.log("Posts ordenados após normalização:", sortedPosts.map(post => ({
+    console.log("Posts ordenados por criação:", sortedPosts.map(post => ({
         title: post.title,
-        updatedAt: post.updatedAt,
         createdAt: post.createdAt
     })));
-    
 
     return sortedPosts;
 };
