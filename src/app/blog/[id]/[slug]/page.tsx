@@ -28,43 +28,48 @@ const Post = ({ params }: PostProps) => {
   const [post, setPost] = useState<any>(null);
   const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
 
-useEffect(() => {
+  useEffect(() => {
     const loadPost = async () => {
-        try {
-            const postData = await fetchPostById(id);
-            setPost(postData);
+      try {
+        const postData = await fetchPostById(id);
+        setPost(postData);
 
-            if (postData.categories && postData.categories.length > 0) {
-                const categoryIds = postData.categories.map((category: any) => category.id);
-                console.log("Categorias do post atual:", categoryIds);
+        if (postData.categories && postData.categories.length > 0) {
+          const categoryIds = postData.categories.map((category: any) => category.id);
+          console.log("Categorias do post atual:", categoryIds);
 
-                const related = await fetchRelatedPosts(categoryIds, postData.id);
-                setRelatedPosts(related);
-            }
-        } catch (error) {
-            console.error("Erro ao buscar o post:", error);
-            setPost(null);
+          const related = await fetchRelatedPosts(categoryIds, postData.id);
+          setRelatedPosts(related);
         }
+      } catch (error) {
+        console.error("Erro ao buscar o post:", error);
+        setPost(null);
+      }
     };
     loadPost();
-}, [id]);
-
+  }, [id]);
 
   if (!post) return <Loader />;
 
-  // URL fixa para o artigo
   const articleUrl = `https://simpleway.tech/blog/${post.id}/${post.slug}`;
 
   return (
     <>
       <Head>
-        <title>{post.title} | Nome do Site</title>
-        <meta name="description" content={`Leia o artigo ${post.title}`} />
+        <title>{post.title} | SimpleWay</title>
+        <meta
+          name="description"
+          content={post.excerpt || `Leia o artigo "${post.title}" e aprenda sobre ${post.categories[0]?.name}.`}
+        />
         <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={`Leia o artigo ${post.title}`} />
+        <meta
+          property="og:description"
+          content={post.excerpt || `Leia o artigo "${post.title}" para saber mais sobre ${post.categories[0]?.name}.`}
+        />
         <meta property="og:url" content={articleUrl} />
         <meta property="og:image" content={post.imagePath || "/default-image.jpg"} />
         <meta property="og:type" content="article" />
+        <link rel="canonical" href={articleUrl} />
       </Head>
 
       <div className={styles.main}>
@@ -82,12 +87,12 @@ useEffect(() => {
           alt={`Imagem ilustrativa do artigo ${post.title}`}
           width={800}
           height={400}
-          priority
+          loading="lazy"
         />
         <div className={styles.content} dangerouslySetInnerHTML={{ __html: post.content }} />
 
         <div className={styles.share}>
-          <p>Compartilhe</p>
+          <h2>Compartilhe este artigo</h2>
           <div className={styles.socialIcons}>
             <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`} target="_blank">
               <FaFacebookF />
@@ -104,7 +109,12 @@ useEffect(() => {
           </div>
         </div>
 
-        {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
+        {relatedPosts.length > 0 && (
+          <>
+            <h2>Posts Relacionados</h2>
+            <RelatedPosts posts={relatedPosts} />
+          </>
+        )}
       </div>
     </>
   );
