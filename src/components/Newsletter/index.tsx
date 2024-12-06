@@ -107,7 +107,15 @@ export function Newsletter() {
                 onChange={handleCheckboxChange}
               />
               <label htmlFor="privacyPolicy">
-                {dynamicTexts.checkboxLabel}
+                Eu concordo e aceito a{' '}
+                <a
+                  href="https://simpleway.tech/politica"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: 'underline' }} // Estilo direto
+                >
+                  Política de Privacidade
+                </a>.
               </label>
             </div>
             <button type="submit" disabled={!isChecked}>

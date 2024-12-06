@@ -12,25 +12,48 @@ import {
 import styles from '@/components/Lgpd/styles.module.scss';
 import { getDataHome } from '@/utils/actions/get-data';
 
+// Definindo tipos para o retorno de `getDataHome`
+interface Metadata {
+  titulo_3?: string;
+  description_3?: string;
+  icone_4?: string;
+  icone_5?: string;
+  icone_6?: string;
+  icone_7?: string;
+  icone_8?: string;
+  icone_9?: string;
+  icone_10?: string;
+  icone_11?: string;
+}
+
+interface DataObject {
+  object?: {
+    metadata?: Metadata;
+  };
+}
+
 export const Lgpd = async () => {
   try {
     // Busca os dados da API Cosmic diretamente no lado do servidor
-    const data = await getDataHome();
-    const metadata = data?.object?.metadata;
+    const data: DataObject = await getDataHome();
+    console.log('Data fetched:', data);
 
-    // Verifica se os campos existem e define valores padrão
-    const titulo3 = metadata?.titulo_3 || 'LGPD';
+    // Obtém metadata ou utiliza um objeto vazio para evitar erros
+    const metadata = data?.object?.metadata ?? {};
+
+    // Define valores padrão caso os campos não existam
+    const titulo3 = metadata.titulo_3 || 'LGPD';
     const description3 =
-      metadata?.description_3 || 'Descrição não disponível no momento.';
+      metadata.description_3 || 'Descrição não disponível no momento.';
     const icones = [
-      { icon: <FaTasks size={48} />, text: metadata?.icone_4 || 'Conteúdo não disponível.' },
-      { icon: <FaSitemap size={48} />, text: metadata?.icone_5 || 'Conteúdo não disponível.' },
-      { icon: <FaMap size={48} />, text: metadata?.icone_6 || 'Conteúdo não disponível.' },
-      { icon: <FaShieldAlt size={48} />, text: metadata?.icone_7 || 'Conteúdo não disponível.' },
-      { icon: <FaDatabase size={48} />, text: metadata?.icone_8 || 'Conteúdo não disponível.' },
-      { icon: <FaFileAlt size={48} />, text: metadata?.icone_9 || 'Conteúdo não disponível.' },
-      { icon: <FaCheckSquare size={48} />, text: metadata?.icone_10 || 'Conteúdo não disponível.' },
-      { icon: <FaUserShield size={48} />, text: metadata?.icone_11 || 'Conteúdo não disponível.' },
+      { icon: <FaTasks size={48} />, text: metadata.icone_4 || 'Conteúdo não disponível.' },
+      { icon: <FaSitemap size={48} />, text: metadata.icone_5 || 'Conteúdo não disponível.' },
+      { icon: <FaMap size={48} />, text: metadata.icone_6 || 'Conteúdo não disponível.' },
+      { icon: <FaShieldAlt size={48} />, text: metadata.icone_7 || 'Conteúdo não disponível.' },
+      { icon: <FaDatabase size={48} />, text: metadata.icone_8 || 'Conteúdo não disponível.' },
+      { icon: <FaFileAlt size={48} />, text: metadata.icone_9 || 'Conteúdo não disponível.' },
+      { icon: <FaCheckSquare size={48} />, text: metadata.icone_10 || 'Conteúdo não disponível.' },
+      { icon: <FaUserShield size={48} />, text: metadata.icone_11 || 'Conteúdo não disponível.' },
     ];
 
     // Divide os ícones em duas linhas com 4 ícones cada
