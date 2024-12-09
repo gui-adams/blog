@@ -1,44 +1,24 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, FormEvent } from "react";
 import { FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import styles from "./footer.module.scss";
 import sw2 from "/public/sw2.svg";
+import { loadRDStationScript, createRDStationForm } from "@/utils/rdStation";
 
 export function Footer() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!name || !email) {
-      setMessage("Preencha todos os campos.");
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/rd", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email }),
+  useEffect(() => {
+    // Carregar o script do RD Station e criar o formulário no rodapé
+    loadRDStationScript()
+      .then(() => {
+        createRDStationForm("footer_newsletter-ba8e84ed578dd6b2a378", "UA-215748891-3");
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar ou criar o formulário do RD Station no rodapé:", error);
       });
-
-      const data = await response.json();
-      if (response.ok) {
-        setMessage(data.message);
-        setSubmitted(true);
-      } else {
-        setMessage("Erro ao se inscrever. Tente novamente.");
-      }
-    } catch (error) {
-      setMessage("Erro ao se inscrever. Tente novamente.");
-    }
-  };
+  }, []);
 
   return (
     <>
@@ -80,37 +60,12 @@ export function Footer() {
           </div>
 
           <div className={styles["newsletter-address-phone"]}>
-            {!submitted ? (
-              <div className={styles.newsletter}>
-                <h4>Newsletter</h4>
-                <span>Quer receber notícias e novidades sobre a SimpleWay?<br />Se inscreva para não perder nenhum conteúdo.</span>
-                <form className={styles.formnew} onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Digite seu nome aqui"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className={styles.inputField}
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Digite seu e-mail aqui"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={styles.inputField}
-                  />
-                  <button type="submit">Se inscrever</button>
-                </form>
-                {message && <p>{message}</p>}
-              </div>
-            ) : (
-              <div className={styles.thankYouMessage}>
-                <h2>Obrigado!</h2>
-                <p>Você se inscreveu com sucesso na nossa newsletter.</p>
-              </div>
-            )}
+            {/* Apenas o formulário do RD Station */}
+            <div
+              role="main"
+              id="footer_newsletter-ba8e84ed578dd6b2a378"
+              className={styles.formContainer}
+            ></div>
           </div>
         </div>
       </footer>

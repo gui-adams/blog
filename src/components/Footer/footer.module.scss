@@ -4,7 +4,7 @@
 .footer {
   background-color: $primary-color;
   color: $white-color;
-  padding: $spacing-large 0;
+
 
   .container {
     display: flex;
@@ -23,6 +23,8 @@
   .links {
     flex: 1 1 150px;
     padding-left: $spacing-medium;
+    margin-top: 4rem;
+
   
     h4 {
       font-weight: bold;
@@ -47,6 +49,8 @@
     flex-direction: column;
     align-items: center; /* Centraliza a logo e os ícones horizontalmente */
     margin-bottom: $spacing-small;
+    margin-top: 10rem;
+
   
     .logo {
       margin-bottom: $spacing-small; /* Espaço entre a logo e os ícones */
@@ -56,6 +60,7 @@
       display: flex;
       justify-content: center; /* Centraliza os ícones */
       gap: $spacing-small;
+
   
       .icon {
         color: $white-color;
