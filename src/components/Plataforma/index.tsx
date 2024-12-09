@@ -5,6 +5,7 @@ import Image from "next/image";
 import plataforma2 from "/public/plataforma2.svg";
 import styles from "../Plataforma/style.module.scss";
 import { getDataHome } from "@/utils/actions/get-data";
+import { loadRDStationScript, createRDStationForm } from "@/utils/rdStation"; // Importa funções utilitárias
 
 // Função para buscar os textos do Cosmic no lado do servidor
 export const fetchPlatformTexts = async () => {
@@ -55,31 +56,13 @@ export const Plataforma: React.FC = () => {
   // Insere o script do RD Station quando o pop-up é aberto
   useEffect(() => {
     if (showPopup) {
-      const existingScript = document.querySelector(
-        `script[src="https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js"]`
-      );
-
-      if (!existingScript) {
-        const script = document.createElement("script");
-        script.src = "https://d335luupugsy2.cloudfront.net/js/rdstation-forms/stable/rdstation-forms.min.js";
-        script.async = true;
-        script.onload = () => {
-          if (window.RDStationForms) {
-            new window.RDStationForms(
-              "form-sw-superior-376ea9fca7ce1c245ff3",
-              "UA-215748891-3"
-            ).createForm();
-          }
-        };
-        document.body.appendChild(script);
-      } else {
-        if (window.RDStationForms) {
-          new window.RDStationForms(
-            "form-sw-superior-376ea9fca7ce1c245ff3",
-            "UA-215748891-3"
-          ).createForm();
-        }
-      }
+      loadRDStationScript()
+        .then(() => {
+          createRDStationForm("form-sw-superior-376ea9fca7ce1c245ff3", "UA-215748891-3");
+        })
+        .catch((error) => {
+          console.error("Erro ao carregar ou criar o formulário do RD Station:", error);
+        });
     }
   }, [showPopup]);
 
