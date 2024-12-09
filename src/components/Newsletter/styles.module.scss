@@ -4,14 +4,13 @@
 .newsletter {
   max-width: 100%;
   width: 845px;
-  border: 1px solid $background-color;
-  border-radius: 10px;
-  box-shadow: 0 1px 5px #d1d1d1;
   margin: 3rem auto 0;
   padding: $spacing-small;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  // Removendo a sombra para design clean
 
   @include respond-to(sm) {
     flex-direction: column;
@@ -35,8 +34,19 @@
   height: 245px;
   background-color: $primary-color;
   border-radius: 10px;
-  box-shadow: 0 1px 5px #d1d1d1;
-  margin-right: 20px;
+
+  // Removendo a sombra para design clean
+  box-shadow: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
 
   @include respond-to(sm) {
     width: 150px;
@@ -56,124 +66,40 @@
   }
 }
 
-.formnew {
-  width: 100%;
-  padding: 0 $spacing-medium;
+.formContainer {
+  flex: 1;
   display: flex;
   flex-direction: column;
-
-  .rd {
-    h3 {
-      @include typography-h3;
-      color: $primary-text-color;
-    }
-
-    span {
-      @include typography-span;
-      color: $secondary-text-color;
-    }
-  }
-
-  input[type="email"], input[type="text"] {
-    width: 100%;
-    max-width: 390px;
-    padding: $spacing-small;
-    border: 1px solid $border-color;
-    border-radius: 8px;
-    margin-top: $spacing-small;
-
-    @include respond-to(sm) {
-      font-size: 14px;
-      padding: 8px;
-      max-width: 100%;
-    }
-
-    @include respond-to(xs) {
-      font-size: 12px;
-      padding: 6px;
-    }
-
-    @include respond-to(xl) {
-      font-size: 18px;
-      padding: 12px;
-      max-width: 500px;
-    }
-  }
-
-  .checkboxContainer {
-    display: flex;
-    align-items: center;
-    margin-top: $spacing-small;
-
-    input[type="checkbox"] {
-      margin-right: $spacing-small;
-    }
-
-    label {
-      font-size: 1rem;
-      color: $secondary-text-color;
-
-      strong {
-        text-decoration: underline;
-      }
-
-      @include respond-to(sm) {
-        font-size: 0.9rem;
-      }
-
-      @include respond-to(xs) {
-        font-size: 0.8rem;
-      }
-
-      @include respond-to(xl) {
-        font-size: 1.2rem;
-      }
-    }
-  }
-  button {
-    background-color: $primary-color;
-    border: 0;
-    padding: $spacing-small $spacing-medium; // Use variáveis para manter a padronização
-    margin-top: $spacing-small;
-    border-radius: 1rem;
-    color: $background-color;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.5s;
-    font-size: $font-size-p; // Use a variável de tamanho de fonte padrão para texto
-
-    &:hover {
-        transform: scale(1.05);
-    }
-
-    @include respond-to(sm) {
-        padding: 0.5rem 2.5rem; // Ajuste o padding para dispositivos menores
-        font-size: 0.9rem; // Reduza o tamanho da fonte no mobile, se necessário
-    }
-
-    @include respond-to(xs) {
-        padding: 0.4rem 2rem; // Reduza o padding para telas menores
-        font-size: 0.85rem;
-    }
-
-    @include respond-to(lg) {
-        padding: 0.8rem 3rem; // Mantenha o botão maior em telas grandes
-        font-size: 1rem;
-    }
-}
-}
-.thankYouMessage {
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 
   h2 {
-    font-size: 2.5rem;
-    color: $primary-color;
-    font-weight: bold;
+    font-size: 2.4rem;
+      color: $primary-text-color; // Aplica a cor do texto principal
+      font-family: $font-family;
+      margin-bottom: $spacing-small;
+  }
+  p{
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    color: $secondary-text-color; // Aplica a cor do texto secundário
+    padding-top: $spacing-small;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: $font-family;
   }
 
-  p {
-    font-size: 1.2rem;
-    color: $primary-text-color;
+  .form {
+    width: 100%;
+    max-width: 600px;
     margin-top: $spacing-small;
+    padding: $spacing-small;
+
+    // Removendo a sombra para design clean (se existir)
+
+    @include respond-to(sm) {
+      max-width: 100%;
+    }
   }
 }

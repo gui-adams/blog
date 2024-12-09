@@ -1,3 +1,6 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .contatodiv {
   min-height: 50vh;
   display: flex;
@@ -5,31 +8,30 @@
   align-items: center;
   justify-content: center;
   padding-top: 2rem;
-  margin-bottom: 4rem; /* Espaço inferior para evitar sobreposição com o footer */
+  margin-bottom: 4rem; // Espaço inferior para evitar sobreposição com o footer
 
   h2 {
-    font-size: 2.4rem;
-    line-height: 4rem;
-    color: #374754;
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
-    margin-bottom: 1rem; /* Espaço inferior para separar o título do conteúdo */
+    font-size: 2.2rem; // Ajuste para não exagerar em telas grandes
+    color: $primary-text-color; // Aplica a cor do texto principal
+    font-family: $font-family;
+    margin-bottom: $spacing-small;
+    line-height: 1.4; // Melhor controle da altura da linha
   }
 
   span {
-    font-size: 1.1rem;
-    line-height: 1.5rem;
-    color: #252430;
-    text-align: justify; /* Justificando o texto */
-    font-family: 'DM Sans', sans-serif;
-    padding-top: 1rem;
-    max-width: 600px; /* Para controlar a largura do texto */
+    font-size: 1rem; // Ajuste consistente
+    line-height: 1.6;
+    color: $secondary-text-color; // Aplica a cor do texto secundário
+    padding-top: $spacing-small;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: $font-family;
   }
 
   .centralizado {
     display: block;
-    text-align: center; /* Centraliza o texto */
-    margin: 0 auto; /* Centraliza se necessário */
+    text-align: center; // Centraliza o texto
+    margin: 0 auto; // Centraliza se necessário
   }
 
   @media (max-width: 768px) {
@@ -37,36 +39,36 @@
 
     h2 {
       font-size: 1.8rem;
-      line-height: 3rem;
+      line-height: 2.4rem;
     }
 
     span {
-      font-size: 1rem;
-      line-height: 1.4rem;
+      font-size: 0.95rem;
+      line-height: 1.5rem;
     }
   }
 
   @media (max-width: 360px) {
     h2 {
       font-size: 1.6rem;
-      line-height: 2.6rem;
+      line-height: 2.2rem;
     }
 
     span {
       font-size: 0.9rem;
-      line-height: 1.3rem;
+      line-height: 1.4rem;
     }
   }
 
   @media (min-width: 1920px) {
     h2 {
-      font-size: 3rem;
-      line-height: 5rem;
+      font-size: 2.5rem;
+      line-height: 3rem;
     }
 
     span {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 1.2rem;
+      line-height: 1.8rem;
     }
   }
 }
@@ -77,11 +79,10 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px; /* Espaçamento entre os elementos */
+  gap: 16px; // Espaçamento entre os elementos
 
   .div {
     width: 100%;
@@ -91,7 +92,7 @@
     gap: 16px;
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: #252430;
       font-family: 'DM Sans', sans-serif;
@@ -113,7 +114,7 @@
 
     textarea {
       height: 150px;
-      resize: vertical; /* Permite redimensionar verticalmente */
+      resize: vertical; // Permite redimensionar verticalmente
     }
 
     button {
@@ -138,10 +139,10 @@
   }
 
   @media (max-width: 768px) {
-    width: 90%; /* Adapta o formulário em telas menores */
+    width: 90%; // Adapta o formulário em telas menores
 
     .div h3 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     input,
@@ -156,10 +157,10 @@
   }
 
   @media (max-width: 360px) {
-    width: 95%; /* Mais espaçamento em telas menores como Galaxy S8 */
+    width: 95%; // Mais espaçamento em telas menores como Galaxy S8
 
     .div h3 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     input,
@@ -174,20 +175,20 @@
   }
 
   @media (min-width: 1920px) {
-    width: 800px; /* Aumenta a largura do formulário em telas grandes */
+    width: 800px; // Aumenta a largura do formulário em telas grandes
 
     .div h3 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     input,
     textarea {
-      font-size: 18px;
+      font-size: 16px;
     }
 
     button {
-      font-size: 18px;
-      padding: 1rem 3rem;
+      font-size: 16px;
+      padding: 0.8rem 2.5rem;
     }
   }
 }

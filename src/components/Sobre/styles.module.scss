@@ -16,14 +16,22 @@
     h2 {
       @include typography-h2; /* Usa estilo consistente para o título */
       text-align: center; /* Garante alinhamento à esquerda */
-      font-size: 2rem; /* Ajuste para telas menores */
+      font-size: 2.4rem;
+      color: $primary-text-color; // Aplica a cor do texto principal
+      font-family: $font-family;
+      margin-bottom: $spacing-small;
     }
 
     p {
       @include typography-p; /* Usa estilo consistente para parágrafos */
       text-align: justify; /* Garante alinhamento justificado */
-      font-size: 1rem; /* Ajuste para tamanho menor */
-      line-height: 1.5rem; /* Melhor espaçamento entre linhas */
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+      color: $secondary-text-color; // Aplica a cor do texto secundário
+      padding-top: $spacing-small;
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: $font-family;
 
       span {
         display: block;
